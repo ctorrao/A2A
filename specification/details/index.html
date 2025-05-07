@@ -1,0 +1,3140 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An open protocol enabling communication and interoperability between opaque agentic applications">
+      
+      
+      
+        <link rel="canonical" href="https://google.github.io/A2A/specification/details/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/a2a-logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Agent2Agent (A2A) Protocol Specification - Agent2Agent Protocol (A2A)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Google Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent2agent-a2a-protocol-specification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Agent2Agent Protocol (A2A)" class="md-header__button md-logo" aria-label="Agent2Agent Protocol (A2A)" data-md-component="logo">
+      
+  <img src="../../assets/a2a-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent2Agent Protocol (A2A)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agent2Agent (A2A) Protocol Specification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="white"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/google/A2A" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    A2A
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../topics/a2a-and-mcp/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Why A2A?
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  A2A Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../partners/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Partners
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../resources/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Resources
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tutorials/python/1-introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  A2A Tutorial (Python)
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Agent2Agent Protocol (A2A)" class="md-nav__button md-logo" aria-label="Agent2Agent Protocol (A2A)" data-md-component="logo">
+      
+  <img src="../../assets/a2a-logo.png" alt="logo">
+
+    </a>
+    Agent2Agent Protocol (A2A)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/google/A2A" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    A2A
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Why A2A?
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Why A2A?
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/a2a-and-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A and MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/agent-discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Discovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/enterprise-ready/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enterprise Ready
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../topics/push-notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Push Notifications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    A2A Protocol
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            A2A Protocol
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Card
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-to-agent-communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent-to-Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample-messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sample Messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partners
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    A2A Tutorial (Python)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            A2A Tutorial (Python)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/1-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/2-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/3-create-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/4-agent-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Skills
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/5-add-agent-card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Add Agent Card
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/6-start-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/7-interact-with-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interact with server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/8-agent-capabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent capabilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/9-ollama-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/python/10-next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Next steps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-transport-and-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Transport and Format
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-authentication-and-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Authentication and Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agent-discovery-the-agent-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Agent Discovery: The Agent Card
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Agent Discovery: The Agent Card">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-agentcard-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. AgentCard Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-agentprovider-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. AgentProvider Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-agentcapabilities-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. AgentCapabilities Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-agentauthentication-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4. AgentAuthentication Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-agentskill-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5. AgentSkill Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-protocol-data-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Protocol Data Objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Protocol Data Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-task-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. Task Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-taskstatus-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. TaskStatus Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-taskstate-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3. TaskState Enum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-message-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4. Message Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-part-union-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5. Part Union Type
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5. Part Union Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#651-textpart-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.1. TextPart Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#652-filepart-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.2. FilePart Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-datapart-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.3. DataPart Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-filecontent-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6. FileContent Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-artifact-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.7. Artifact Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-pushnotificationconfig-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.8. PushNotificationConfig Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#69-authenticationinfo-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.9. AuthenticationInfo Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#610-taskpushnotificationconfig-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.10. TaskPushNotificationConfig Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#611-json-rpc-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.11. JSON-RPC Structures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-jsonrpcerror-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.12. JSONRPCError Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-protocol-rpc-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Protocol RPC Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Protocol RPC Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-taskssend" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. tasks/send
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1. tasks/send">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-tasksendparams-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1.1. TaskSendParams Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-taskssendsubscribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2. tasks/sendSubscribe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2. tasks/sendSubscribe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#721-sendtaskstreamingresponse-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.1. SendTaskStreamingResponse Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#722-taskstatusupdateevent-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.2. TaskStatusUpdateEvent Object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#723-taskartifactupdateevent-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.3. TaskArtifactUpdateEvent Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-tasksget" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3. tasks/get
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3. tasks/get">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#731-taskqueryparams-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.1. TaskQueryParams Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-taskscancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4. tasks/cancel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4. tasks/cancel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#741-taskidparams-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.1. TaskIdParams Object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-taskspushnotificationset" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5. tasks/pushNotification/set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-taskspushnotificationget" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6. tasks/pushNotification/get
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-tasksresubscribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.7. tasks/resubscribe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-standard-json-rpc-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. Standard JSON-RPC Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-a2a-specific-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2. A2A Specific Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-common-workflows-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Common Workflows &amp; Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Common Workflows &amp; Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-basic-task-execution-synchronous-polling-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1. Basic Task Execution (Synchronous / Polling Style)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-streaming-task-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2. Streaming Task Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-multi-turn-interaction-input-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3. Multi-Turn Interaction (Input Required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-push-notification-setup-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.4. Push Notification Setup and Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Appendices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-relationship-to-mcp-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1. Relationship to MCP (Model Context Protocol)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-security-considerations-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.2. Security Considerations Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="agent2agent-a2a-protocol-specification">Agent2Agent (A2A) Protocol Specification<a class="headerlink" href="#agent2agent-a2a-protocol-specification" title="Permanent link">&para;</a></h1>
+<p><strong>Version:</strong> <code>0.1.0</code></p>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>The Agent2Agent (A2A) Protocol is an open standard designed to facilitate communication and interoperability between independent, potentially opaque AI agent systems. In an ecosystem where agents might be built using different frameworks, languages, or vendors, A2A provides a common language and interaction model. This enables agents to discover each other's capabilities, negotiate interaction modalities (text, files, structured data), manage collaborative tasks, and securely exchange information to achieve user goals <strong>without needing access to each other's internal state, memory, or tools.</strong></p>
+<p><strong>Key Goals:</strong></p>
+<ul>
+<li><strong>Interoperability:</strong> Bridge the gap between disparate agentic systems.</li>
+<li><strong>Collaboration:</strong> Enable agents to delegate tasks, exchange context, and work together on complex user requests.</li>
+<li><strong>Discovery:</strong> Allow agents to dynamically find and understand the capabilities of other agents.</li>
+<li><strong>Flexibility:</strong> Support various interaction modes (text, files, forms, streaming).</li>
+<li><strong>Security:</strong> Facilitate secure communication patterns suitable for enterprise environments.</li>
+<li><strong>Asynchronicity:</strong> Support long-running tasks and interactions that may involve human-in-the-loop scenarios.</li>
+</ul>
+<p>This document provides the detailed technical specification for the A2A protocol, defining its data structures, communication methods, and core concepts.</p>
+<h2 id="2-core-concepts">2. Core Concepts<a class="headerlink" href="#2-core-concepts" title="Permanent link">&para;</a></h2>
+<p>Understanding these core concepts is essential for implementing or interacting with A2A-compliant agents:</p>
+<ul>
+<li><strong>A2A Client:</strong> An entity (service, application, or another agent) that initiates requests to an A2A Server on behalf of a user to accomplish a task.</li>
+<li><strong>A2A Server (Remote Agent):</strong> An agentic system that exposes an HTTP endpoint implementing the A2A protocol. It receives requests from clients, processes tasks, and returns results or status updates. It operates opaquely from the client's perspective.</li>
+<li><strong>Agent Card:</strong> A standardized JSON metadata document, typically hosted at <code>/.well-known/agent.json</code>, describing an A2A Server's identity, capabilities (e.g., streaming support), skills, communication endpoint (<code>url</code>), and authentication requirements. Clients use this for discovery. See <a href="#5-agent-discovery-the-agent-card">Section 5</a>.</li>
+<li><strong>Task:</strong> The fundamental unit of work within the A2A protocol. A client initiates a task (e.g., "Generate a report", "Answer this question") by sending an initial message. Each task has a unique ID and progresses through a defined lifecycle (<a href="#63-taskstate-enum"><code>TaskState</code></a>). See <a href="#61-task-object">Section 6.1</a>.</li>
+<li><strong>Message:</strong> A unit of communication within a Task, representing a turn in the conversation. Messages have a <code>role</code> ("user" for client-sent messages, "agent" for server-sent messages) and contain one or more <code>Part</code> objects. See <a href="#64-message-object">Section 6.4</a>.</li>
+<li><strong>Part:</strong> The smallest unit of content within a <code>Message</code> or <code>Artifact</code>. Can be <a href="#651-textpart-object"><code>TextPart</code></a> (plain text), <a href="#652-filepart-object"><code>FilePart</code></a> (binary data, referenced by URI or inline bytes), or <a href="#653-datapart-object"><code>DataPart</code></a> (structured JSON data, e.g., for forms). See <a href="#65-part-union-type">Section 6.5</a>.</li>
+<li><strong>Artifact:</strong> Represents an output or result generated by the agent during task processing (e.g., a generated document, an image, structured data). Artifacts contain one or more <code>Part</code> objects and can be streamed. See <a href="#67-artifact-object">Section 6.7</a>.</li>
+<li><strong>Streaming:</strong> For tasks that may take time or produce incremental results, A2A supports Server-Sent Events (SSE). A client uses the <a href="#72-taskssendsubscribe"><code>tasks/sendSubscribe</code></a> method, and the server pushes <a href="#722-taskstatusupdateevent-object"><code>TaskStatusUpdateEvent</code></a> and <a href="#723-taskartifactupdateevent-object"><code>TaskArtifactUpdateEvent</code></a> messages over the connection.</li>
+<li><strong>Push Notifications:</strong> For long-running tasks where maintaining an SSE connection is impractical, A2A allows servers to proactively send updates to a client-provided webhook URL. This is configured per task using <a href="#75-taskspushnotificationset"><code>tasks/pushNotification/set</code></a>. See <a href="#68-pushnotificationconfig-object">Section 6.8</a>.</li>
+<li><strong>Session:</strong> An optional client-provided identifier (<code>sessionId</code>) that can group multiple related tasks together. See <a href="#61-task-object">Section 6.1</a>.</li>
+</ul>
+<h2 id="3-transport-and-format">3. Transport and Format<a class="headerlink" href="#3-transport-and-format" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Transport:</strong> A2A communication occurs over HTTP(S). Production deployments MUST use HTTPS.</li>
+<li><strong>Data Format:</strong> A2A uses <strong><a href="https://www.jsonrpc.org/specification">JSON-RPC 2.0</a></strong> as the payload format for all requests and responses. See <a href="#611-json-rpc-structures">Section 6.11: JSON-RPC Structures</a>.</li>
+<li><strong>Streaming Transport:</strong> When streaming is used (<a href="#72-taskssendsubscribe"><code>tasks/sendSubscribe</code></a>, <a href="#77-tasksresubscribe"><code>tasks/resubscribe</code></a>), the server sends updates using <strong><a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events">Server-Sent Events (SSE)</a></strong> over the established HTTP connection. Each SSE <code>data</code> field contains a JSON-RPC 2.0 Response object (<a href="#721-sendtaskstreamingresponse-object"><code>SendTaskStreamingResponse</code></a>).</li>
+</ul>
+<h2 id="4-authentication-and-authorization">4. Authentication and Authorization<a class="headerlink" href="#4-authentication-and-authorization" title="Permanent link">&para;</a></h2>
+<p>A2A treats agents as standard enterprise applications, relying on established web security practices rather than defining new ones within the protocol payload.</p>
+<ul>
+<li><strong>Transport Security:</strong> Production deployments MUST use HTTPS with modern <a href="https://datatracker.ietf.org/doc/html/rfc8446">TLS</a> configurations.</li>
+<li><strong>Server Identity:</strong> Clients SHOULD verify the server's identity using its TLS certificate during the TLS handshake.</li>
+<li><strong>Client/User Identity:</strong> Identity information is NOT transmitted within A2A JSON-RPC payloads. Authentication requirements are declared in the <a href="#51-agentcard-object"><code>AgentCard</code></a>.</li>
+<li><strong>Authentication Process:</strong></li>
+<li>The client discovers the server's required authentication schemes via the <code>AgentCard</code>. See <a href="#54-agentauthentication-object"><code>AgentAuthentication</code></a>. Schemes often align with <a href="https://swagger.io/docs/specification/authentication/">OpenAPI Authentication methods</a> (e.g., "Bearer", "Basic", "OAuth2").</li>
+<li>The client obtains the necessary credentials (e.g., API keys, OAuth tokens, JWTs) through an <strong>out-of-band process</strong> specific to the required scheme (e.g., OAuth 2.0 flows).</li>
+<li>The client includes these credentials in the appropriate <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP headers</a> (e.g., <code>Authorization: Bearer &lt;token&gt;</code>) of every A2A request.</li>
+<li><strong>Server Responsibility:</strong> The A2A Server MUST authenticate every incoming request based on the provided HTTP credentials and its declared requirements. It SHOULD use standard HTTP status codes (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"><code>401 Unauthorized</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"><code>403 Forbidden</code></a>) and relevant headers (e.g., <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate"><code>WWW-Authenticate</code></a>) for challenges or rejections.</li>
+<li><strong>In-Task Authentication:</strong> If an agent requires additional credentials <em>during</em> a task (e.g., to access a specific tool on behalf of the user), it should transition the task to the <code>input-required</code> state (<a href="#63-taskstate-enum"><code>TaskState</code></a>) and provide necessary details (potentially using an <a href="#69-authenticationinfo-object"><code>AuthenticationInfo</code></a> structure within a <a href="#653-datapart-object"><code>DataPart</code></a>). The client obtains these new credentials out-of-band and provides them in a subsequent <a href="#71-taskssend"><code>tasks/send</code></a> or <a href="#72-taskssendsubscribe"><code>tasks/sendSubscribe</code></a> request.</li>
+<li><strong>Authorization:</strong> Servers are responsible for authorizing requests based on the authenticated client/user identity. Authorization MAY be enforced based on specific skills requested (<a href="#55-agentskill-object"><code>AgentSkill</code></a>) or actions attempted within the task.</li>
+</ul>
+<p><em>(See also <a href="https://google.github.io/A2A/#/topics/enterprise_ready.md">Enterprise Readiness Topic</a>)</em></p>
+<h2 id="5-agent-discovery-the-agent-card">5. Agent Discovery: The Agent Card<a class="headerlink" href="#5-agent-discovery-the-agent-card" title="Permanent link">&para;</a></h2>
+<p>A2A Servers MUST publish an Agent Card, a JSON document describing their capabilities and how to interact with them.</p>
+<ul>
+<li><strong>Recommended Location:</strong> <code>https://{server_domain}/.well-known/agent.json</code> (See <a href="https://datatracker.ietf.org/doc/html/rfc8615">RFC 8615 Well-Known URIs</a>)</li>
+<li><strong>Discovery Methods:</strong> Clients can find Agent Cards via the well-known path, curated registries, or private mechanisms. <em>(See <a href="https://google.github.io/A2A/#/topics/agent_discovery.md">Agent Discovery Topic</a>)</em></li>
+<li><strong>Security:</strong> Agent Cards containing sensitive information (like default credentials in the <code>authentication</code> field) MUST be protected by appropriate access controls (e.g., mTLS, network restrictions, authentication on the endpoint serving the card).</li>
+</ul>
+<h3 id="51-agentcard-object">5.1. <code>AgentCard</code> Object<a class="headerlink" href="#51-agentcard-object" title="Permanent link">&para;</a></h3>
+<p>Describes the A2A Server (Remote Agent).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Human-readable name of the agent (e.g., "Recipe Agent").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Human-readable description of the agent's purpose. <a href="https://commonmark.org/">CommonMark</a> MAY be used for formatting.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>url</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The base URL endpoint for the agent's A2A service (where JSON-RPC requests are sent). Must be an absolute URL (e.g., <code>https://agent.example.com/</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>provider</code></td>
+<td style="text-align: left;"><a href="#52-agentprovider-object"><code>AgentProvider</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Information about the organization providing the agent.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>version</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Version string for the agent or its A2A implementation (format defined by provider, e.g., "1.0.0", "beta").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>documentationUrl</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">URL pointing to human-readable documentation for the agent.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>capabilities</code></td>
+<td style="text-align: left;"><a href="#53-agentcapabilities-object"><code>AgentCapabilities</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Specifies optional features supported by the agent (streaming, push notifications, etc.).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>authentication</code></td>
+<td style="text-align: left;"><a href="#54-agentauthentication-object"><code>AgentAuthentication</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Authentication schemes required to interact with the agent. If <code>null</code> or omitted, no authentication is required (NOT recommended for production).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>defaultInputModes</code></td>
+<td style="text-align: left;"><code>string[]</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Array of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME types</a> the agent generally accepts as input. Default: <code>["text/plain"]</code>. Example: <code>["text/plain", "image/png"]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>defaultOutputModes</code></td>
+<td style="text-align: left;"><code>string[]</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Array of MIME types the agent generally produces as output. Default: <code>["text/plain"]</code>. Example: <code>["text/plain", "application/json"]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>skills</code></td>
+<td style="text-align: left;"><a href="#55-agentskill-object"><code>AgentSkill[]</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">An array of specific skills or capabilities the agent offers. Must contain at least one skill if the agent performs actions.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-agentprovider-object">5.2. <code>AgentProvider</code> Object<a class="headerlink" href="#52-agentprovider-object" title="Permanent link">&para;</a></h3>
+<p>Information about the organization providing the agent.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>organization</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Name of the organization.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>url</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">URL for the provider's organization website.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-agentcapabilities-object">5.3. <code>AgentCapabilities</code> Object<a class="headerlink" href="#53-agentcapabilities-object" title="Permanent link">&para;</a></h3>
+<p>Specifies optional protocol features supported by the agent.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>streaming</code></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">If <code>true</code>, the agent supports <a href="#72-taskssendsubscribe"><code>tasks/sendSubscribe</code></a> and <a href="#77-tasksresubscribe"><code>tasks/resubscribe</code></a> via SSE.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pushNotifications</code></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">If <code>true</code>, the agent supports <a href="#75-taskspushnotificationset"><code>tasks/pushNotification/set</code></a> and <a href="#76-taskspushnotificationget"><code>tasks/pushNotification/get</code></a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>stateTransitionHistory</code></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">If <code>true</code>, the agent may include a detailed history of status changes within the <a href="#61-task-object"><code>Task</code></a> object (mechanism not fully detailed in current spec version).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-agentauthentication-object">5.4. <code>AgentAuthentication</code> Object<a class="headerlink" href="#54-agentauthentication-object" title="Permanent link">&para;</a></h3>
+<p>Describes the authentication requirements for the agent, mirroring <a href="https://swagger.io/docs/specification/authentication/">OpenAPI Authentication Object</a> structure conceptually.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>schemes</code></td>
+<td style="text-align: left;"><code>string[]</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Array of authentication scheme names supported/required (e.g., "Bearer", "Basic", "OAuth2", "apiKey"). Standard names should be used where applicable.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>credentials</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional field, potentially containing static credentials like an API key <em>if</em> appropriate and if the Agent Card itself is adequately secured. Discouraged for dynamic secrets.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="55-agentskill-object">5.5. <code>AgentSkill</code> Object<a class="headerlink" href="#55-agentskill-object" title="Permanent link">&para;</a></h3>
+<p>Describes a specific capability or function the agent can perform.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">A unique identifier for this skill within the agent (e.g., "currency-converter", "generate-image").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Human-readable name of the skill (e.g., "Currency Conversion").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Detailed description of what the skill does. <a href="https://commonmark.org/">CommonMark</a> MAY be used.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>tags</code></td>
+<td style="text-align: left;"><code>string[]</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Array of keywords for categorization (e.g., ["finance", "conversion", "image generation"]).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>examples</code></td>
+<td style="text-align: left;"><code>string[]</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Array of example prompts or use cases for this skill (e.g., ["convert 100 USD to EUR"]).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>inputModes</code></td>
+<td style="text-align: left;"><code>string[]</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Overrides <code>defaultInputModes</code> specifically for this skill. If <code>null</code> or omitted, defaults apply.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>outputModes</code></td>
+<td style="text-align: left;"><code>string[]</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Overrides <code>defaultOutputModes</code> specifically for this skill. If <code>null</code> or omitted, defaults apply.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-protocol-data-objects">6. Protocol Data Objects<a class="headerlink" href="#6-protocol-data-objects" title="Permanent link">&para;</a></h2>
+<p>These objects define the structure of data exchanged via JSON-RPC methods.</p>
+<h3 id="61-task-object">6.1. <code>Task</code> Object<a class="headerlink" href="#61-task-object" title="Permanent link">&para;</a></h3>
+<p>Represents the stateful unit of work being processed by the agent.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Unique identifier for the task, typically generated by the client. Should be sufficiently unique (e.g., UUID).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sessionId</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional client-generated identifier to group related tasks.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;"><a href="#62-taskstatus-object"><code>TaskStatus</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The current status (state, message, timestamp) of the task.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>artifacts</code></td>
+<td style="text-align: left;"><a href="#67-artifact-object"><code>Artifact[]</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Array of outputs generated by the agent for this task. Can be populated incrementally via streaming.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>history</code></td>
+<td style="text-align: left;"><a href="#64-message-object"><code>Message[]</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional array of recent messages exchanged within this task, ordered chronologically (oldest first). Included if requested via <code>historyLength</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary key-value metadata associated with the task. Keys SHOULD be strings, values can be any valid JSON type.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-taskstatus-object">6.2. <code>TaskStatus</code> Object<a class="headerlink" href="#62-taskstatus-object" title="Permanent link">&para;</a></h3>
+<p>Represents the current state and associated context of a <code>Task</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>state</code></td>
+<td style="text-align: left;"><a href="#63-taskstate-enum"><code>TaskState</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The current lifecycle state of the task.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;"><a href="#64-message-object"><code>Message</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">An optional message associated with the current status (e.g., progress update, final result text, input prompt).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>timestamp</code></td>
+<td style="text-align: left;"><code>string</code> (<a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a> <code>date-time</code>) | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">The date and time (preferably in UTC) when this status was recorded. Example: <code>"2023-10-27T10:00:00Z"</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-taskstate-enum">6.3. <code>TaskState</code> Enum<a class="headerlink" href="#63-taskstate-enum" title="Permanent link">&para;</a></h3>
+<p>Defines the possible lifecycle states of a <code>Task</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Terminal State?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>submitted</code></td>
+<td style="text-align: left;">Task received by the server, but processing has not yet started.</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>working</code></td>
+<td style="text-align: left;">Task is actively being processed by the agent.</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>input-required</code></td>
+<td style="text-align: left;">Agent requires additional input from the client/user to proceed.</td>
+<td style="text-align: left;">No (Pause)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>completed</code></td>
+<td style="text-align: left;">Task finished successfully.</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>canceled</code></td>
+<td style="text-align: left;">Task was canceled by the client or potentially by the server.</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>failed</code></td>
+<td style="text-align: left;">Task terminated due to an error during processing. The <code>TaskStatus.message</code> may contain error details.</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>unknown</code></td>
+<td style="text-align: left;">The state of the task cannot be determined (e.g., task ID invalid or expired).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-message-object">6.4. <code>Message</code> Object<a class="headerlink" href="#64-message-object" title="Permanent link">&para;</a></h3>
+<p>Represents a single communication turn within a <code>Task</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>role</code></td>
+<td style="text-align: left;"><code>"user"</code> | <code>"agent"</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Indicates the sender: <code>"user"</code> for client messages, <code>"agent"</code> for server messages.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>parts</code></td>
+<td style="text-align: left;"><a href="#65-part-union-type"><code>Part[]</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">An array containing the content of the message, broken down into one or more parts. Must contain at least one part.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary key-value metadata associated with the message. Keys SHOULD be strings, values can be any valid JSON type.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="65-part-union-type">6.5. <code>Part</code> Union Type<a class="headerlink" href="#65-part-union-type" title="Permanent link">&para;</a></h3>
+<p>Represents a distinct piece of content within a <code>Message</code> or <code>Artifact</code>. A <code>Part</code> object includes an optional <code>metadata</code> field (<code>object</code> | <code>null</code>) and is <strong>one</strong> of the following specific types identified by its mandatory <code>type</code> field:</p>
+<h4 id="651-textpart-object">6.5.1. <code>TextPart</code> Object<a class="headerlink" href="#651-textpart-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>type</code></td>
+<td style="text-align: left;"><code>"text"</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Identifies this as text.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>text</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The textual content.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Part-specific metadata.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="652-filepart-object">6.5.2. <code>FilePart</code> Object<a class="headerlink" href="#652-filepart-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>type</code></td>
+<td style="text-align: left;"><code>"file"</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Identifies this as a file.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>file</code></td>
+<td style="text-align: left;"><a href="#66-filecontent-object"><code>FileContent</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Contains the file details/data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Part-specific metadata.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="653-datapart-object">6.5.3. <code>DataPart</code> Object<a class="headerlink" href="#653-datapart-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>type</code></td>
+<td style="text-align: left;"><code>"data"</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Identifies this as structured data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>data</code></td>
+<td style="text-align: left;"><code>object</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The structured JSON data payload (e.g., form data, parameters).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Part-specific metadata.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="66-filecontent-object">6.6. <code>FileContent</code> Object<a class="headerlink" href="#66-filecontent-object" title="Permanent link">&para;</a></h3>
+<p>Represents the data or reference for a file within a <code>FilePart</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">The original filename, if known (e.g., "report.pdf").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>mimeType</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME type</a> of the file (e.g., <code>image/png</code>, <code>application/pdf</code>). Strongly recommended.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>bytes</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">Conditionally (See Constraint)</td>
+<td style="text-align: left;">Base64 encoded string of the raw file content.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>uri</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">Conditionally (See Constraint)</td>
+<td style="text-align: left;">A URI (absolute URL preferred) pointing to the file content. The accessibility of the URI depends on the context between client and server.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraint:</strong> Exactly one of <code>bytes</code> or <code>uri</code> MUST be provided if file content is present. Both MAY be <code>null</code> or absent if representing a file reference without immediate content.</p>
+<h3 id="67-artifact-object">6.7. <code>Artifact</code> Object<a class="headerlink" href="#67-artifact-object" title="Permanent link">&para;</a></h3>
+<p>Represents an output generated by the agent during a task.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">A descriptive name for the artifact (e.g., "report.pdf", "analysis_results").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">A human-readable description of the artifact. <a href="https://commonmark.org/">CommonMark</a> MAY be used.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>parts</code></td>
+<td style="text-align: left;"><a href="#65-part-union-type"><code>Part[]</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">An array containing the content of the artifact. Must contain at least one part.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>index</code></td>
+<td style="text-align: left;"><code>integer</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>0</code></td>
+<td style="text-align: left;">A non-negative index for ordering artifacts or identifying artifact chunks during streaming. Multiple artifacts can share the same index if they represent parts of the same logical output.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>append</code></td>
+<td style="text-align: left;"><code>boolean</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">If <code>true</code> (used with streaming <code>TaskArtifactUpdateEvent</code>), indicates this update should append its <code>parts</code> to the artifact currently at the same <code>index</code>. If <code>false</code> or <code>null</code>, it replaces.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>lastChunk</code></td>
+<td style="text-align: left;"><code>boolean</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">If <code>true</code> (used with streaming <code>TaskArtifactUpdateEvent</code>), indicates this is the final update for the artifact at this <code>index</code>. Useful for signaling the end of a streamed file or data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">Arbitrary key-value metadata associated with the artifact. Keys SHOULD be strings, values can be any valid JSON type.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="68-pushnotificationconfig-object">6.8. <code>PushNotificationConfig</code> Object<a class="headerlink" href="#68-pushnotificationconfig-object" title="Permanent link">&para;</a></h3>
+<p>Configuration for sending push notifications for a task. <em>(See also <a href="https://google.github.io/A2A/#/topics/push_notifications.md">Push Notifications Topic</a>)</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>url</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The absolute HTTPS webhook URL where the A2A Server should POST task updates.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>token</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">An optional, client-generated opaque token (e.g., a secret or task-specific identifier) that the server SHOULD include in the notification request (e.g., in a header like <code>X-A2A-Token</code> or similar) for validation by the receiver.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>authentication</code></td>
+<td style="text-align: left;"><a href="#69-authenticationinfo-object"><code>AuthenticationInfo</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Authentication details the A2A Server needs to use when calling the <code>url</code>. The receiver (webhook endpoint) defines these requirements (e.g., required <code>Bearer</code> token scope, expected signature).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="69-authenticationinfo-object">6.9. <code>AuthenticationInfo</code> Object<a class="headerlink" href="#69-authenticationinfo-object" title="Permanent link">&para;</a></h3>
+<p>Generic structure for specifying authentication requirements, typically used within <code>PushNotificationConfig</code>. Mirrors <a href="#54-agentauthentication-object"><code>AgentAuthentication</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>schemes</code></td>
+<td style="text-align: left;"><code>string[]</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Array of authentication scheme names the caller (A2A Server in push context) must use (e.g., "Bearer").</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>credentials</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional field for static credentials if applicable and secure (e.g., pre-shared secret for HMAC).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="610-taskpushnotificationconfig-object">6.10. <code>TaskPushNotificationConfig</code> Object<a class="headerlink" href="#610-taskpushnotificationconfig-object" title="Permanent link">&para;</a></h3>
+<p>Used as <code>params</code> for <a href="#75-taskspushnotificationset"><code>tasks/pushNotification/set</code></a> and as <code>result</code> for <a href="#76-taskspushnotificationget"><code>tasks/pushNotification/get</code></a> methods to associate a push configuration with a specific task.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The ID of the task to configure notifications for.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pushNotificationConfig</code></td>
+<td style="text-align: left;"><a href="#68-pushnotificationconfig-object"><code>PushNotificationConfig</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The push notification configuration details.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="611-json-rpc-structures">6.11. JSON-RPC Structures<a class="headerlink" href="#611-json-rpc-structures" title="Permanent link">&para;</a></h3>
+<p>A2A utilizes standard <a href="https://www.jsonrpc.org/specification">JSON-RPC 2.0</a> structures.</p>
+<ul>
+<li><strong><code>JSONRPCRequest</code></strong>: Contains <code>jsonrpc: "2.0"</code>, <code>method</code> (string, e.g., "tasks/send"), <code>params</code> (object or array containing method parameters), and optional <code>id</code> (string | number | null). <code>id</code> MUST be present for requests expecting a response, null or absent for notifications (though A2A currently uses request/response or streaming).</li>
+<li><strong><code>JSONRPCResponse</code></strong>: Contains <code>jsonrpc: "2.0"</code>, <code>id</code> (matching request <code>id</code>, MUST be present if request had one), and <strong>either</strong> <code>result</code> (any JSON value, including <code>null</code>, representing success) <strong>or</strong> <code>error</code> (<a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a> object, representing failure). <code>result</code> and <code>error</code> are mutually exclusive.</li>
+<li><strong><code>JSONRPCMessage</code></strong>: A base type definition in the schema, mainly for structure, encompassing <code>jsonrpc: "2.0"</code> and optional <code>id</code>.</li>
+</ul>
+<h3 id="612-jsonrpcerror-object">6.12. <code>JSONRPCError</code> Object<a class="headerlink" href="#612-jsonrpcerror-object" title="Permanent link">&para;</a></h3>
+<p>Standard JSON-RPC error structure used in the <code>error</code> field of a <code>JSONRPCResponse</code> when a request fails.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>code</code></td>
+<td style="text-align: left;"><code>integer</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">A number indicating the error type. See <a href="#8-error-handling">Section 8: Error Handling</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">A short, human-readable summary of the error.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>data</code></td>
+<td style="text-align: left;"><code>any</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional field containing additional, structured details about the error (format is defined by the error code/server).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-protocol-rpc-methods">7. Protocol RPC Methods<a class="headerlink" href="#7-protocol-rpc-methods" title="Permanent link">&para;</a></h2>
+<p>All methods are invoked via HTTP POST requests to the agent's <code>url</code> specified in its <code>AgentCard</code>. The request <code>Content-Type</code> MUST be <code>application/json</code>. The request body MUST be a <code>JSONRPCRequest</code> object, and the response body MUST be a <code>JSONRPCResponse</code> object (or an SSE stream of them for subscribe methods), also with <code>Content-Type: application/json</code> (except for SSE which is <code>text/event-stream</code>).</p>
+<h3 id="71-taskssend">7.1. <code>tasks/send</code><a class="headerlink" href="#71-taskssend" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Sends a message to initiate or continue a task. Used for synchronous request/response interactions or when polling is acceptable for longer tasks.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#711-tasksendparams-object"><code>TaskSendParams</code></a></li>
+<li><strong>Response <code>result</code></strong>: <a href="#61-task-object"><code>Task</code></a> object representing the state of the task <em>after</em> processing this message. If the task completes synchronously, this is the final state. If it's still <code>working</code> or <code>submitted</code>, the client may need to poll or use other mechanisms.</li>
+<li><strong>Response <code>error</code></strong>: <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a> if the request fails (e.g., invalid params, auth error, internal error).</li>
+</ul>
+<h4 id="711-tasksendparams-object">7.1.1. <code>TaskSendParams</code> Object<a class="headerlink" href="#711-tasksendparams-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The ID for the task. If the task doesn't exist on the server, it SHOULD be created with this ID. If it exists, this message continues the task.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sessionId</code></td>
+<td style="text-align: left;"><code>string</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional client-generated ID to group this task with others. If omitted for a new task, the server MAY generate one internally but is not required to expose it.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;"><a href="#64-message-object"><code>Message</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The message content to send (e.g., initial user query, response to an <code>input-required</code> prompt). <code>role</code> should typically be "user".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pushNotification</code></td>
+<td style="text-align: left;"><a href="#68-pushnotificationconfig-object"><code>PushNotificationConfig</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Optional. If provided when initiating a task (first <code>tasks/send</code> for a given <code>id</code>), attempts to set the push notification configuration. Behavior on subsequent calls is server-dependent (might update or ignore).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>historyLength</code></td>
+<td style="text-align: left;"><code>integer</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">If provided and positive, requests the server to include up to this many of the most recent <a href="#64-message-object"><code>Message</code></a> objects in the <code>history</code> field of the returned <code>Task</code> object. <code>0</code> or <code>null</code> means no history requested.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary metadata associated with this specific <code>tasks/send</code> request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-taskssendsubscribe">7.2. <code>tasks/sendSubscribe</code><a class="headerlink" href="#72-taskssendsubscribe" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Sends a message to initiate or continue a task AND subscribes the client to receive real-time updates (status changes, artifacts) for that task via Server-Sent Events (SSE). Requires the server to have the <code>streaming: true</code> capability in its <a href="#51-agentcard-object"><code>AgentCard</code></a>.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#711-tasksendparams-object"><code>TaskSendParams</code></a></li>
+<li><strong>Response</strong>:</li>
+<li><strong>Success</strong>: An HTTP <code>200 OK</code> response with <code>Content-Type: text/event-stream</code>. The response body contains a stream of SSE messages. Each message's <code>data</code> field holds a <a href="#721-sendtaskstreamingresponse-object"><code>SendTaskStreamingResponse</code></a> JSON object. The connection remains open until the server sends a final event or the connection is closed.</li>
+<li><strong>Failure</strong>: A standard HTTP error response (e.g., 4xx, 5xx) if the initial subscription request fails immediately (e.g., invalid params, auth error, streaming not supported). The body MAY contain a <code>JSONRPCResponse</code> with details in the <code>error</code> field.</li>
+</ul>
+<h4 id="721-sendtaskstreamingresponse-object">7.2.1. <code>SendTaskStreamingResponse</code> Object<a class="headerlink" href="#721-sendtaskstreamingresponse-object" title="Permanent link">&para;</a></h4>
+<p>This is a standard <code>JSONRPCResponse</code> structure used as the content of the <code>data</code> field in each SSE message.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>jsonrpc</code></td>
+<td style="text-align: left;"><code>"2.0"</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">JSON-RPC version.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code> | <code>number</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Matches the <code>id</code> from the originating <code>tasks/sendSubscribe</code> request this stream corresponds to.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>result</code></td>
+<td style="text-align: left;"><strong>Either</strong> <a href="#722-taskstatusupdateevent-object"><code>TaskStatusUpdateEvent</code></a> <strong>or</strong> <a href="#723-taskartifactupdateevent-object"><code>TaskArtifactUpdateEvent</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Contains the task status update or artifact data payload for this event.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>error</code></td>
+<td style="text-align: left;"><a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Should generally be <code>null</code> for stream events. If a fatal error occurs during streaming, the server MAY send an event with <code>error</code> set and then close the stream.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="722-taskstatusupdateevent-object">7.2.2. <code>TaskStatusUpdateEvent</code> Object<a class="headerlink" href="#722-taskstatusupdateevent-object" title="Permanent link">&para;</a></h4>
+<p>Carries information about a change in the task's status during streaming.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The ID of the task being updated (matches <code>TaskSendParams.id</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;"><a href="#62-taskstatus-object"><code>TaskStatus</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">The new status object for the task, including the <code>state</code> and potentially a <code>message</code> and <code>timestamp</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>final</code></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">If <code>true</code>, indicates this is the terminal status update for this specific <code>tasks/sendSubscribe</code> interaction cycle. The task has reached a state (<code>completed</code>, <code>failed</code>, <code>canceled</code>, or <code>input-required</code>) where no further updates will be sent on this stream. The server typically closes the stream after sending this.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>null</code></td>
+<td style="text-align: left;">Arbitrary metadata associated with this specific status update event.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="723-taskartifactupdateevent-object">7.2.3. <code>TaskArtifactUpdateEvent</code> Object<a class="headerlink" href="#723-taskartifactupdateevent-object" title="Permanent link">&para;</a></h4>
+<p>Carries a new or updated artifact generated during streaming.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The ID of the task that generated the artifact (matches <code>TaskSendParams.id</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>artifact</code></td>
+<td style="text-align: left;"><a href="#67-artifact-object"><code>Artifact</code></a></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The artifact data. This could be a complete artifact or an incremental chunk. Use <code>artifact.index</code>, <code>artifact.append</code>, and <code>artifact.lastChunk</code> to manage assembly on the client side.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary metadata associated with this specific artifact update event.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-tasksget">7.3. <code>tasks/get</code><a class="headerlink" href="#73-tasksget" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Retrieves the current state, including status and any generated artifacts, of a specific task. Useful for polling, fetching the final result after receiving a push notification, or getting the complete state after a streaming session ends.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#731-taskqueryparams-object"><code>TaskQueryParams</code></a></li>
+<li><strong>Response <code>result</code></strong>: <a href="#61-task-object"><code>Task</code></a> object representing the current snapshot of the task. Includes <code>artifacts</code> generated so far.</li>
+<li><strong>Response <code>error</code></strong>: <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a>, e.g., <a href="#82-a2a-specific-errors"><code>TaskNotFoundError</code></a> if the task <code>id</code> is invalid or has expired according to server policy.</li>
+</ul>
+<h4 id="731-taskqueryparams-object">7.3.1. <code>TaskQueryParams</code> Object<a class="headerlink" href="#731-taskqueryparams-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The ID of the task to retrieve.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>historyLength</code></td>
+<td style="text-align: left;"><code>integer</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">If provided and positive, requests the server include up to this many recent <a href="#64-message-object"><code>Message</code></a> objects in the <code>history</code> field of the returned <code>Task</code>. <code>0</code> or <code>null</code> means no history.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary metadata associated with this specific <code>tasks/get</code> request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74-taskscancel">7.4. <code>tasks/cancel</code><a class="headerlink" href="#74-taskscancel" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Requests the cancellation of an ongoing task (i.e., a task not already in a terminal state). Success is not guaranteed; the task might complete or fail before the cancellation request is processed.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#741-taskidparams-object"><code>TaskIdParams</code></a></li>
+<li><strong>Response <code>result</code></strong>: <a href="#61-task-object"><code>Task</code></a> object reflecting the state after the cancellation attempt. Ideally, <code>status.state</code> will be <code>"canceled"</code>, but it might reflect another terminal state if cancellation was too late or unsuccessful.</li>
+<li><strong>Response <code>error</code></strong>: <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a>, e.g., <a href="#82-a2a-specific-errors"><code>TaskNotFoundError</code></a> or <a href="#82-a2a-specific-errors"><code>TaskNotCancelableError</code></a> (if task was already terminal).</li>
+</ul>
+<h4 id="741-taskidparams-object">7.4.1. <code>TaskIdParams</code> Object<a class="headerlink" href="#741-taskidparams-object" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">The ID of the task to attempt to cancel.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>metadata</code></td>
+<td style="text-align: left;"><code>object</code> | <code>null</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Arbitrary metadata for this cancel request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="75-taskspushnotificationset">7.5. <code>tasks/pushNotification/set</code><a class="headerlink" href="#75-taskspushnotificationset" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Sets or updates the push notification configuration for a specific task. This tells the server where and how to send an update (webhook) when the task reaches a significant state change (typically a terminal state or <code>input-required</code>) while the client is disconnected. Requires the server to have the <code>pushNotifications: true</code> capability.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#610-taskpushnotificationconfig-object"><code>TaskPushNotificationConfig</code></a></li>
+<li><strong>Response <code>result</code></strong>: <a href="#610-taskpushnotificationconfig-object"><code>TaskPushNotificationConfig</code></a> confirming the configuration that was set. The server MAY omit sensitive details like secrets from the response for security.</li>
+<li><strong>Response <code>error</code></strong>: <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a>, e.g., <a href="#82-a2a-specific-errors"><code>PushNotificationNotSupportedError</code></a>, <a href="#82-a2a-specific-errors"><code>TaskNotFoundError</code></a>, or errors related to validating the push config (e.g., invalid URL, unsupported auth).</li>
+</ul>
+<h3 id="76-taskspushnotificationget">7.6. <code>tasks/pushNotification/get</code><a class="headerlink" href="#76-taskspushnotificationget" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Retrieves the currently configured push notification settings for a specific task. Requires the server to have the <code>pushNotifications: true</code> capability.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#741-taskidparams-object"><code>TaskIdParams</code></a></li>
+<li><strong>Response <code>result</code></strong>: <a href="#610-taskpushnotificationconfig-object"><code>TaskPushNotificationConfig</code></a> containing the current configuration. Returns <code>null</code> or an empty object if no configuration is set for the task. The server MAY omit sensitive details like secrets.</li>
+<li><strong>Response <code>error</code></strong>: <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code></a>, e.g., <a href="#82-a2a-specific-errors"><code>PushNotificationNotSupportedError</code></a>, <a href="#82-a2a-specific-errors"><code>TaskNotFoundError</code></a>.</li>
+</ul>
+<h3 id="77-tasksresubscribe">7.7. <code>tasks/resubscribe</code><a class="headerlink" href="#77-tasksresubscribe" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Allows a client to reconnect to the SSE stream for an ongoing task after a network interruption or disconnection. Useful if the client detects a broken SSE connection for a task that hasn't reached a <code>final: true</code> state. Requires the server to have the <code>streaming: true</code> capability.</p>
+<ul>
+<li><strong>Request <code>params</code></strong>: <a href="#731-taskqueryparams-object"><code>TaskQueryParams</code></a> (Note: <code>historyLength</code> is typically ignored on resubscribe, as the focus is on future events).</li>
+<li><strong>Response</strong>:</li>
+<li><strong>Success</strong>: An HTTP <code>200 OK</code> response with <code>Content-Type: text/event-stream</code>. The body contains a stream of <em>subsequent</em> SSE messages for the task, each containing a <a href="#721-sendtaskstreamingresponse-object"><code>SendTaskStreamingResponse</code></a>. The server's behavior regarding events missed during disconnection is implementation-dependent (it might replay some key state/artifacts or simply resume with new updates from the point of resubscription).</li>
+<li><strong>Failure</strong>: A standard HTTP error response (e.g., 4xx, 5xx) if resubscription fails (e.g., <code>TaskNotFoundError</code>, streaming no longer active/supported for task, auth error). The body MAY contain a <code>JSONRPCResponse</code> with <code>error</code> details.</li>
+</ul>
+<h2 id="8-error-handling">8. Error Handling<a class="headerlink" href="#8-error-handling" title="Permanent link">&para;</a></h2>
+<p>A2A uses standard <a href="https://www.jsonrpc.org/specification#error_object">JSON-RPC 2.0 error codes</a>, plus defines custom codes (in the server error range <code>-32000</code> to <code>-32099</code>) for protocol-specific errors. Errors are returned in the <code>error</code> field of a <code>JSONRPCResponse</code>. See <a href="#612-jsonrpcerror-object"><code>JSONRPCError</code> Object</a>.</p>
+<h3 id="81-standard-json-rpc-errors">8.1. Standard JSON-RPC Errors<a class="headerlink" href="#81-standard-json-rpc-errors" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Constant (<code>a2a.json</code> Title)</th>
+<th style="text-align: left;">Default Message</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-32700</code></td>
+<td style="text-align: left;"><code>JSONParseError</code></td>
+<td style="text-align: left;">Invalid JSON payload</td>
+<td style="text-align: left;">Server received invalid JSON.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32600</code></td>
+<td style="text-align: left;"><code>InvalidRequestError</code></td>
+<td style="text-align: left;">Request payload validation error</td>
+<td style="text-align: left;">JSON is valid, but not a valid JSON-RPC Request object.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32601</code></td>
+<td style="text-align: left;"><code>MethodNotFoundError</code></td>
+<td style="text-align: left;">Method not found</td>
+<td style="text-align: left;">The requested <code>method</code> does not exist on the server.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32602</code></td>
+<td style="text-align: left;"><code>InvalidParamsError</code></td>
+<td style="text-align: left;">Invalid parameters</td>
+<td style="text-align: left;">The <code>params</code> provided for the method are invalid or missing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32603</code></td>
+<td style="text-align: left;"><code>InternalError</code></td>
+<td style="text-align: left;">Internal error</td>
+<td style="text-align: left;">An unexpected error occurred on the server.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32000</code> to <code>-32099</code></td>
+<td style="text-align: left;"><em>(Server defined)</em></td>
+<td style="text-align: left;"><em>(Server defined)</em></td>
+<td style="text-align: left;">Reserved for implementation-specific server errors.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-a2a-specific-errors">8.2. A2A Specific Errors<a class="headerlink" href="#82-a2a-specific-errors" title="Permanent link">&para;</a></h3>
+<p>These use codes within the <code>-32000</code> to <code>-32099</code> range.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Constant (<code>a2a.json</code> Title)</th>
+<th style="text-align: left;">Default Message</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-32001</code></td>
+<td style="text-align: left;"><code>TaskNotFoundError</code></td>
+<td style="text-align: left;">Task not found</td>
+<td style="text-align: left;">The specified task <code>id</code> was not found on the server or has expired.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32002</code></td>
+<td style="text-align: left;"><code>TaskNotCancelableError</code></td>
+<td style="text-align: left;">Task cannot be canceled</td>
+<td style="text-align: left;">The task is already in a terminal state (<code>completed</code>, <code>failed</code>, <code>canceled</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32003</code></td>
+<td style="text-align: left;"><code>PushNotificationNotSupportedError</code></td>
+<td style="text-align: left;">Push Notification is not supported</td>
+<td style="text-align: left;">The server agent does not support the push notification feature (<code>pushNotifications: false</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32004</code></td>
+<td style="text-align: left;"><code>UnsupportedOperationError</code></td>
+<td style="text-align: left;">This operation is not supported</td>
+<td style="text-align: left;">The requested high-level operation or capability (perhaps implied by parameters) is not supported by the agent.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-32005</code></td>
+<td style="text-align: left;"><code>ContentTypeNotSupportedError</code></td>
+<td style="text-align: left;">Incompatible content types</td>
+<td style="text-align: left;">A content <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME type</a> in the request <code>message.parts</code> is not supported by the agent or the targeted skill.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-common-workflows-examples">9. Common Workflows &amp; Examples<a class="headerlink" href="#9-common-workflows-examples" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Note: Timestamps, session IDs, and request IDs in examples are illustrative</p>
+</blockquote>
+<h3 id="91-basic-task-execution-synchronous-polling-style">9.1. Basic Task Execution (Synchronous / Polling Style)<a class="headerlink" href="#91-basic-task-execution-synchronous-polling-style" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Client -&gt; Server:</strong> Send <code>tasks/send</code> request with initial message and a new <code>taskId</code>.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/send&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-uuid-12345&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="p">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Server -&gt; Client:</strong> Server processes synchronously (as it's a quick task) and returns the final <code>Task</code> object.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-uuid-12345&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;session-uuid-67890&quot;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-27T10:00:05Z&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">&quot;artifacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The capital of France is Paris.&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nt">&quot;history&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><em>(Alternatively, for long tasks, the server might immediately return <code>status.state: "working"</code>. The client would then periodically call <code>tasks/get</code> with <code>id: "task-uuid-12345"</code> until the state becomes terminal.)</em></p>
+</li>
+</ol>
+<h3 id="92-streaming-task-execution">9.2. Streaming Task Execution<a class="headerlink" href="#92-streaming-task-execution" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Client -&gt; Server:</strong> Send <code>tasks/sendSubscribe</code> request.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/sendSubscribe&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-stream-abc&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Write a short story about a robot exploring Mars.&quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="p">]</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Server -&gt; Client (SSE Stream):</strong> Server responds with HTTP 200 and <code>Content-Type: text/event-stream</code>, then sends multiple <code>SendTaskStreamingResponse</code> events.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>id: 201-1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>data: {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:201,&quot;result&quot;:{&quot;id&quot;:&quot;task-stream-abc&quot;,&quot;status&quot;:{&quot;state&quot;:&quot;working&quot;,&quot;message&quot;:{&quot;role&quot;:&quot;agent&quot;,&quot;parts&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot;Okay, drafting a story...&quot;}],&quot;metadata&quot;:null},&quot;timestamp&quot;:&quot;2024-10-27T10:05:01Z&quot;},&quot;final&quot;:false,&quot;metadata&quot;:null}}
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>id: 201-2
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>data: {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:201,&quot;result&quot;:{&quot;id&quot;:&quot;task-stream-abc&quot;,&quot;artifact&quot;:{&quot;name&quot;:&quot;story_chunk_1&quot;,&quot;description&quot;:null,&quot;parts&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot;Unit 734 rolled across the red dust. &quot;,&quot;metadata&quot;:null}],&quot;index&quot;:0,&quot;append&quot;:false,&quot;lastChunk&quot;:false,&quot;metadata&quot;:null},&quot;metadata&quot;:null}}
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>id: 201-3
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>data: {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:201,&quot;result&quot;:{&quot;id&quot;:&quot;task-stream-abc&quot;,&quot;artifact&quot;:{&quot;name&quot;:&quot;story_chunk_2&quot;,&quot;description&quot;:null,&quot;parts&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot;Olympus Mons loomed in the distance...&quot;,&quot;metadata&quot;:null}],&quot;index&quot;:0,&quot;append&quot;:true,&quot;lastChunk&quot;:false,&quot;metadata&quot;:null},&quot;metadata&quot;:null}}
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>id: 201-4
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>data: {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:201,&quot;result&quot;:{&quot;id&quot;:&quot;task-stream-abc&quot;,&quot;artifact&quot;:{&quot;name&quot;:&quot;story_chunk_3&quot;,&quot;description&quot;:null,&quot;parts&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot; a lonely vigil.&quot;,&quot;metadata&quot;:null}],&quot;index&quot;:0,&quot;append&quot;:true,&quot;lastChunk&quot;:true,&quot;metadata&quot;:null},&quot;metadata&quot;:null}}
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>id: 201-5
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>data: {&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:201,&quot;result&quot;:{&quot;id&quot;:&quot;task-stream-abc&quot;,&quot;status&quot;:{&quot;state&quot;:&quot;completed&quot;,&quot;message&quot;:null,&quot;timestamp&quot;:&quot;2024-10-27T10:05:05Z&quot;},&quot;final&quot;:true,&quot;metadata&quot;:null}}
+</span></code></pre></div>
+<p><em>(Note: The <code>id</code> field in the SSE message (<code>201-1</code>, <code>201-2</code>, etc.) is the SSE event ID, distinct from the JSON-RPC <code>id</code> field inside the <code>data</code> payload (<code>201</code>)).</em></p>
+</li>
+</ol>
+<h3 id="93-multi-turn-interaction-input-required">9.3. Multi-Turn Interaction (Input Required)<a class="headerlink" href="#93-multi-turn-interaction-input-required" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Client -&gt; Server:</strong> Initial <code>tasks/send</code>.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Request Body</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">301</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/send&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-booking-xyz&quot;</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Book a flight for me.&quot;</span><span class="w"> </span><span class="p">}]</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Server -&gt; Client:</strong> Server requires input, responds with <code>status.state: "input-required"</code>.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Response Body</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">301</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-booking-xyz&quot;</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;session-def-456&quot;</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;input-required&quot;</span><span class="p">,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-27T10:10:00Z&quot;</span><span class="p">,</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;agent&quot;</span><span class="p">,</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">          </span><span class="p">{</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sure, where would you like to fly to and on what date?&quot;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="p">],</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="nt">&quot;artifacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">    </span><span class="nt">&quot;history&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><em>(If using <code>tasks/sendSubscribe</code>, this status update would arrive in a <code>TaskStatusUpdateEvent</code> with <code>final: true</code>)</em></p>
+</li>
+<li>
+<p><strong>Client -&gt; Server:</strong> Client provides the requested input using the <em>same</em> <code>id</code> from <code>params</code>.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Request Body</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span><span class="w"> </span><span class="c1">// New request ID</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/send&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Or tasks/sendSubscribe if more streaming is expected</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-booking-xyz&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// SAME task ID</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;session-def-456&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// SAME session ID if applicable</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;To London, tomorrow.&quot;</span><span class="w"> </span><span class="p">}]</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Server -&gt; Client:</strong> Server proceeds and eventually completes (or asks for more input, e.g., preferred airline). Response depends on whether <code>tasks/send</code> or <code>tasks/sendSubscribe</code> was used in step 3. If <code>tasks/send</code>:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Response Body</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-booking-xyz&quot;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;session-def-456&quot;</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-27T10:11:00Z&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="nt">&quot;artifacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;booking_confirmation&quot;</span><span class="p">,</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">          </span><span class="p">{</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">            </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;confirmationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LHR-XYZ123&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">    </span><span class="cm">/*...*/</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+</ol>
+<h3 id="94-push-notification-setup-and-usage">9.4. Push Notification Setup and Usage<a class="headerlink" href="#94-push-notification-setup-and-usage" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Client -&gt; Server:</strong> Initiate a long-running task and set notification config using <code>tasks/send</code> (or <code>tasks/pushNotification/set</code> separately).</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Request Body</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/send&quot;</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-report-gen-777&quot;</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">      </span><span class="nt">&quot;parts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">          </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Generate the quarterly sales report. It might take a while, notify my webhook when done.&quot;</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">      </span><span class="p">]</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/webhooks/a2a/task_updates&quot;</span><span class="p">,</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">      </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;opaque-client-token-for-task-777&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// For client validation</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">      </span><span class="nt">&quot;authentication&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">        </span><span class="c1">// Info for SERVER to authenticate TO webhook</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">        </span><span class="nt">&quot;schemes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Bearer&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Example: webhook expects a JWT Bearer token</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">        </span><span class="c1">// Credentials field might be omitted if server uses its own pre-configured client creds for this webhook URL</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">        </span><span class="nt">&quot;credentials&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="c1">// Or potentially JWT audience/scope info if needed</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Server -&gt; Client:</strong> Server acknowledges task submission (likely with <code>state: "submitted"</code> or <code>"working"</code>).</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Response Body</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-report-gen-777&quot;</span><span class="p">,</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;submitted&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-27T11:00:00Z&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="cm">/*...*/</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>(Later: Hours/Days) Server -&gt; Webhook URL:</strong> When the task completes, the server makes an <strong>authenticated</strong> POST request to <code>https://example.com/webhooks/a2a/task_updates</code>.</p>
+<ul>
+<li><strong>Request Headers likely include:</strong></li>
+<li><code>Authorization: Bearer &lt;server_obtained_jwt&gt;</code> (Server gets this JWT based on <code>pushNotification.authentication</code> requirements, perhaps using client credentials flow with an identity provider trusted by the webhook).</li>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-A2A-Token: opaque-client-token-for-task-777</code> (Server includes the token provided by the client).</li>
+<li><strong>Request Body:</strong> (Payload format is convention-based, but should identify the task and its status. Sending the full Task object is also possible but potentially large).</li>
+</ul>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">&quot;taskId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-report-gen-777&quot;</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">&quot;finalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-10-28T18:30:00Z&quot;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="c1">// Could include simplified artifact info or just signal completion</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="c1">// Potentially a signature of the payload if required by webhook</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Webhook -&gt; Client:</strong> The webhook endpoint (<code>example.com</code>) <strong>verifies</strong> the incoming request (checks <code>Authorization</code> token validity, checks <code>X-A2A-Token</code> matches expectation for the task, potentially checks payload signature) and then notifies the original client application internally (e.g., via a message queue, internal API call).</p>
+</li>
+<li>
+<p><strong>Client -&gt; Server (Optional):</strong> The client, now notified, can call <code>tasks/get</code> to retrieve the full <code>Task</code> object including the generated report artifact(s).</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Request Body</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">402</span><span class="p">,</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tasks/get&quot;</span><span class="p">,</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;task-report-gen-777&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+</ol>
+<h2 id="10-appendices">10. Appendices<a class="headerlink" href="#10-appendices" title="Permanent link">&para;</a></h2>
+<h3 id="101-relationship-to-mcp-model-context-protocol">10.1. Relationship to MCP (Model Context Protocol)<a class="headerlink" href="#101-relationship-to-mcp-model-context-protocol" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>MCP:</strong> Focuses on connecting agents/models to <strong>tools, APIs, and resources</strong> with structured inputs/outputs. It standardizes how an agent <em>uses</em> a capability provided by an external system (which could be a simple API, a database, or even another agent exposing a tool-like interface). See <a href="https://modelcontextprotocol.io/">modelcontextprotocol.io</a>.</li>
+<li><strong>A2A:</strong> Focuses on communication <strong>between agentic systems themselves</strong>, facilitating higher-level collaboration, task delegation, negotiation, and exchange of conversational context or complex results <em>as peers</em>, without necessarily exposing internal tools or structure.</li>
+<li><strong>Complementary:</strong> They address different, but related, levels of interaction. An agent (Client) might use A2A to ask another specialized agent (Server) to perform a complex task ("Analyze this financial data and provide insights"). The Server agent might then use MCP to interact with several underlying tools (databases, calculation APIs, charting libraries) to fulfill that A2A task. It's conceivable that an A2A agent's <code>AgentCard</code> could be represented or discovered via MCP mechanisms if it's intended to be used primarily like a structured tool by another system, but A2A's core strength lies in more flexible, stateful, and potentially multi-modal peer-to-peer agent collaboration.</li>
+</ul>
+<p><em>(See also <a href="https://google.github.io/A2A/#/topics/a2a_and_mcp.md">A2A ❤️ MCP Topic</a>)</em></p>
+<h3 id="102-security-considerations-summary">10.2. Security Considerations Summary<a class="headerlink" href="#102-security-considerations-summary" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Transport:</strong> <strong>Always</strong> use HTTPS with strong TLS configurations (TLS 1.2+, appropriate ciphers) in production.</li>
+<li><strong>Authentication:</strong> Handled via standard HTTP mechanisms (primarily <code>Authorization</code> header). A2A payloads themselves are identity-agnostic. Authentication requirements MUST be advertised in the <code>AgentCard</code>. Clients obtain credentials out-of-band. Servers MUST validate credentials on <strong>every</strong> incoming request.</li>
+<li><strong>Authorization:</strong> Purely a server-side responsibility based on the authenticated identity. Granularity may depend on requested skills (<code>AgentSkill</code>), specific actions attempted within a task, or data access policies. Implement least privilege.</li>
+<li><strong>Push Notifications:</strong> Introduce significant additional security considerations:</li>
+<li><strong>Server Trusting Webhook URL:</strong> Servers SHOULD validate the <code>url</code> provided in <code>PushNotificationConfig</code> (e.g., via allowlists, network policies, or an initial verification request if feasible) to prevent SSRF or DDoS amplification.</li>
+<li><strong>Server Authenticating to Webhook:</strong> The server MUST securely authenticate itself to the webhook endpoint using the method specified in <code>PushNotificationConfig.authentication</code>. This often involves managing client credentials or signing tokens securely.</li>
+<li><strong>Webhook Endpoint Verifying Server:</strong> The webhook MUST rigorously verify the authenticity and integrity of incoming notification requests (e.g., validate JWT signature against trusted keys/JWKS endpoint, check <code>Authorization</code> token, match <code>X-A2A-Token</code>).</li>
+<li><strong>Replay Prevention:</strong> Webhooks should implement measures to prevent replay attacks (e.g., checking timestamps (<code>iat</code>, <code>exp</code>) in JWTs, using nonces within signed payloads, maintaining state of received notification IDs). See <a href="https://google.github.io/A2A/#/topics/push_notifications.md">Push Notifications Topic</a>.</li>
+<li><strong>Input Validation:</strong> Servers MUST rigorously validate <strong>all</strong> inputs received via RPC parameters, including content types, sizes, and data structures within <code>Part</code> objects, to prevent injection attacks, resource exhaustion, or unexpected behavior.</li>
+<li><strong>Resource Management:</strong> Servers should implement rate limiting, concurrency controls, and potentially limits on task duration or resource consumption (CPU, memory, network) per client/task to ensure stability and prevent denial-of-service from malicious or buggy clients.</li>
+<li><strong>Data Privacy:</strong> Consider the sensitivity of data exchanged in <code>Message</code> and <code>Artifact</code> parts. Ensure compliance with relevant privacy regulations. Avoid including unnecessary sensitive information.</li>
+</ul>
+<p><em>(See also <a href="https://google.github.io/A2A/#/topics/enterprise_ready.md">Enterprise Readiness Topic</a>)</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright Google 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.tabs.link", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
